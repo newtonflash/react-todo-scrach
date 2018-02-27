@@ -2,51 +2,82 @@ import React, { Component } from 'react';
 
 import './App.css';
 
+import Search from './search';
+import Product from './product';
+
+import {connect} from 'react-redux';
+
+
 class App extends Component {
-    constructor(){
-        super();
-        this.state = {
-            todoList : [
-                "Need to bring umbrella",
-                "review code of reg-6678",
-                "say bye to my old gf",
-                "say Ilu to new gf"
-            ]
-        }
-        this.removeItem = this.removeItem.bind(this);
+
+    constructor(props){
+        super(props);
+        this.searchEventHandler = this.searchEventHandler.bind(this);
     }
 
-  removeItem(evt){
-      console.log(evt.target.dataset.id);
-      var newState = this.state.todoList.filter((item, index) => {
+    componentDidMount(){
+        fetch("product.json")
+            .then( resp => {
+                console.log(resp);
+               /* console.log(resp.json());
+                resp.json().then( data => {
+                    console.log(data)
+                })*/
+            })
+            .catch((e)=>{
+                console.log("ERROR LOADING FILE", e);
+            })
+    }
 
-          if(index !== evt.target.dataset.id *1 ) return item;
-      });
-      this.setState({
-          todoList : newState
-      });
 
-  }
-
+    searchEventHandler(searchKey){
+        this.props.dispatch({
+            type : "SEARCH",
+            searchKey : searchKey
+        })
+    }
 
   render() {
-      const getTodoList = this.state.todoList.map((item, index) => {
 
-            return (<li key={index} >
-                {item}
-                <button data-id={index} onClick={this.removeItem}>delete</button>
-            </li>);
-          })
+      const getProductList = () => {
+          if(this.props.searchString === ""){
+
+              return this.props.products.map((item, index) => {
+                  return (<Product key={index} data={item} ></Product>);
+              });
+          } else {
+              return this.props.products
+                  .filter((item) => { return (item.name.toLowerCase().indexOf(this.props.searchString.toLowerCase()) >= 0); })
+                  .map((item, index) => {
+                     return (<Product key={index} data={item} ></Product>);
+                  });
+          }
+
+      }
 
     return (
       <div className="App">
-        <h1>Here is my todo list</h1>
-        <ul>
-            {getTodoList}
-        </ul>
+        <h1>Product List</h1>
+          <Search searchEventHandler={this.searchEventHandler}></Search>
+          <ul>
+              {getProductList()}
+          </ul>
+
       </div>
     );
   }
 }
 
-export default App;
+const convertStateToProps = (state) => {
+    return {
+        products : state.products,
+        searchString : state.searchString
+    }
+};
+
+const convertDispatchToProps = (dispatch)=> {
+    return { dispatch };
+};
+
+
+export default connect(convertStateToProps, convertDispatchToProps)(App);

@@ -26,3 +26,19 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+.product-list{
+  border:5px solid #ccc;
+  margin:20px;
+  padding:20px;
+}
+
+.product{
+  border:1px solid #ccc;
+  padding:20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px 15px;
+  min-width: 200px;
+}
