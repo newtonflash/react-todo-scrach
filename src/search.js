@@ -17,7 +17,7 @@ class Search extends Component {
 
         return (
             <Fragment>
-                <input defaultValue="search" type="text" onChange={(evt) => { this.onSearchInput(evt) }} />
+                <input placeholder="search"  type="text" onChange={(evt) => { this.onSearchInput(evt) }} />
                 <button >Search</button>
             </Fragment>
         );

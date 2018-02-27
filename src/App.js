@@ -16,13 +16,15 @@ class App extends Component {
     }
 
     componentDidMount(){
-        fetch("product.json")
+        fetch("products.json")
             .then( resp => {
-                console.log(resp);
-               /* console.log(resp.json());
                 resp.json().then( data => {
-                    console.log(data)
-                })*/
+
+                    this.props.dispatch({
+                        type: "UPDATE_PRODUCT_LIST",
+                        data: data
+                    })
+                })
             })
             .catch((e)=>{
                 console.log("ERROR LOADING FILE", e);
@@ -40,6 +42,7 @@ class App extends Component {
   render() {
 
       const getProductList = () => {
+
           if(this.props.searchString === ""){
 
               return this.props.products.map((item, index) => {
