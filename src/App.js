@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-
 import './App.css';
-
 import Search from './search';
 import Product from './product';
-
 import {connect} from 'react-redux';
+
+import PLPAction from './actions';
 
 
 class App extends Component {
@@ -16,27 +15,13 @@ class App extends Component {
     }
 
     componentDidMount(){
-        fetch("products.json")
-            .then( resp => {
-                resp.json().then( data => {
+        this.props.dispatch(PLPAction.loadProductsData());
 
-                    this.props.dispatch({
-                        type: "UPDATE_PRODUCT_LIST",
-                        data: data
-                    })
-                })
-            })
-            .catch((e)=>{
-                console.log("ERROR LOADING FILE", e);
-            })
     }
 
 
     searchEventHandler(searchKey){
-        this.props.dispatch({
-            type : "SEARCH",
-            searchKey : searchKey
-        })
+        this.props.dispatch(PLPAction.search(searchKey));
     }
 
   render() {
@@ -44,7 +29,6 @@ class App extends Component {
       const getProductList = () => {
 
           if(this.props.searchString === ""){
-
               return this.props.products.map((item, index) => {
                   return (<Product key={index} data={item} ></Product>);
               });
@@ -55,8 +39,8 @@ class App extends Component {
                      return (<Product key={index} data={item} ></Product>);
                   });
           }
+      };
 
-      }
 
     return (
       <div className="App">
