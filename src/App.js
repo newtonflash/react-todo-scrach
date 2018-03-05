@@ -3,6 +3,7 @@ import './App.css';
 import Search from './search';
 import Product from './product';
 import {connect} from 'react-redux';
+import ProductSelector from './selector/product-selector'
 
 import PLPAction from './actions';
 
@@ -26,7 +27,7 @@ class App extends Component {
 
   render() {
 
-      const getProductList = () => {
+      /*const getProductList = () => {
 
           if(this.props.searchString === ""){
               return this.props.products.map((item, index) => {
@@ -39,7 +40,13 @@ class App extends Component {
                      return (<Product key={index} data={item} ></Product>);
                   });
           }
-      };
+      };*/
+
+      const getProductList = () => {
+              return this.props.products.map((item, index) => {
+                  return (<Product key={index} data={item} ></Product>);
+              });
+      }
 
 
     return (
@@ -57,7 +64,7 @@ class App extends Component {
 
 const convertStateToProps = (state) => {
     return {
-        products : state.products,
+        products : ProductSelector.searchSelector(state),
         searchString : state.searchString
     }
 };
