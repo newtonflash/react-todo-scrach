@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import style from './product.css';
 
 class Product extends Component {
 
@@ -6,7 +7,7 @@ class Product extends Component {
     render() {
         let data = this.props.data;
         return (
-            <div className="product">
+            <div className={style.product}>
                 <div>
                     <image src="" />
                 </div>
@@ -14,7 +15,7 @@ class Product extends Component {
                 <p>{data.desc}</p>
                 <div>{data.price}</div>
                 <div>
-                    <button className="cta-button">Details</button>
+                    <button className={ "ctaButton " + style.ctaButton }>Details</button>
                 </div>
             </div>
 
