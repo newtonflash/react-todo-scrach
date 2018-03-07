@@ -1,4 +1,4 @@
-import reducers from './reducers';
+import reducers from './reducers/reducers';
 import {createStore, applyMiddleware} from "redux";
 import thunk from 'redux-thunk';
 

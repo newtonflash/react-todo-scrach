@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import Search from './search';
-import Product from './product';
+import Search from '../components/search';
+import Product from '../components/product';
 import {connect} from 'react-redux';
 
-import PLPAction from './actions';
+import PLPAction from '../actions/actions';
+import searchSelector from '../selectors/plp-selectors';
 
 
 class App extends Component {
@@ -26,7 +27,7 @@ class App extends Component {
 
   render() {
 
-      const getProductList = () => {
+     /* const getProductList = () => {
 
           if(this.props.searchString === ""){
               return this.props.products.map((item, index) => {
@@ -39,6 +40,12 @@ class App extends Component {
                      return (<Product key={index} data={item} ></Product>);
                   });
           }
+      };*/
+
+      const getProductList = () => {
+          return this.props.products.map((item, index) => {
+            return (<Product key={index} data={item} ></Product>);
+          });
       };
 
 
@@ -57,7 +64,7 @@ class App extends Component {
 
 const convertStateToProps = (state) => {
     return {
-        products : state.products,
+        products : searchSelector(state),
         searchString : state.searchString
     }
 };
