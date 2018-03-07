@@ -3,7 +3,7 @@
     {
       "sku": 1231234,
       "image": "",
-      "name": "arrow",
+      "name": "Indian Terran",
       "category": "shirt",
       "price": 400,
       "availableQuantity": 4,
@@ -14,7 +14,7 @@
       "image": "",
       "name": "polo",
       "category": "shirt",
-      "price": 400,
+      "price": "400",
       "availableQuantity": 4,
       "desc": "Here is the description"
     },
