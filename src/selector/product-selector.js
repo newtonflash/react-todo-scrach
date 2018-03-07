@@ -2,6 +2,7 @@ import {createSelector} from 'reselect';
 
 const getProductList = (state) => {return state.products};
 const getSearchString = (state) => {return state.searchString};
+const getCurrentSorting = (state) => {return state.currentSorting};
 
 const searchSelector = createSelector(
     getProductList,
@@ -14,5 +15,8 @@ const searchSelector = createSelector(
         }
     }
 );
+/*const sortingSelector = createSelector(
 
+);
+*/
 export default {searchSelector};
