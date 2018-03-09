@@ -34,7 +34,6 @@ const PLPActions = {
             dispatch(searchAction(string));
         }
     }
-
 };
 
 export default PLPActions;
