@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import style from './product.css';
 import PropTypes from 'prop-types';
+import {Link} from "react-browser-router";
 
 
 class Product extends Component {
@@ -13,7 +14,9 @@ class Product extends Component {
                 <p>{data.desc}</p>
                 <div>{data.price}</div>
                 <div>
-                    <button className={ "ctaButton " + style.ctaButton }>Details</button>
+                    <Link to={"/pdp/" + data.sku}>
+                        <button className={ "ctaButton " + style.ctaButton }>Details</button>
+                    </Link>
                 </div>
             </div>
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './plp.css';
 import Search from '../components/search';
 import Product from '../components/product';
 import {connect} from 'react-redux';
@@ -8,7 +8,7 @@ import PLPAction from '../actions/actions';
 import searchSelector from '../selectors/plp-selectors';
 
 
-class App extends Component {
+class PLP extends Component {
 
     constructor(props){
         super(props);
@@ -74,4 +74,4 @@ const convertDispatchToProps = (dispatch)=> {
 };
 
 
-export default connect(convertStateToProps, convertDispatchToProps)(App);
+export default connect(convertStateToProps, convertDispatchToProps)(PLP);

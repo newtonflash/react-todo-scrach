@@ -18,6 +18,7 @@ const PLPActions = {
         return (dispatch) => {
             fetch("products.json")
                 .then( resp => {
+                    
                     resp.json().then( data => {
                         dispatch(updateProductListAction(data));
                     })
