@@ -13,6 +13,13 @@ const searchAction = (searchString) => {
     }
 };
 
+const sortAction = (sortBy) => {
+    return {
+        type: "SORT",
+        data : sortBy
+    }
+};
+
 const PLPActions = {
     loadProductsData : () => {
         return (dispatch) => {
@@ -31,6 +38,12 @@ const PLPActions = {
     search : (string)=> {
         return (dispatch) => {
             dispatch(searchAction(string));
+        }
+    },
+
+    sort : (string)=> {
+        return (dispatch) => {
+            dispatch(sortAction(string));
         }
     }
 

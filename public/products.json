@@ -14,7 +14,7 @@
       "image": "",
       "name": "polo",
       "category": "shirt",
-      "price": "400",
+      "price": "500",
       "availableQuantity": 4,
       "desc": "Here is the description"
     },
@@ -23,7 +23,7 @@
       "image": "",
       "name": "levis",
       "category": "shirt",
-      "price": 400,
+      "price": 600,
       "availableQuantity": 4,
       "desc": "Here is the description"
     },
@@ -32,7 +32,7 @@
       "image": "",
       "name": "US polo",
       "category": "shirt",
-      "price": 400,
+      "price": 900,
       "availableQuantity": 4,
       "desc": "Here is the description"
     },
@@ -41,7 +41,7 @@
       "image": "",
       "name": "Indian Terran",
       "category": "shirt",
-      "price": 400,
+      "price": 700,
       "availableQuantity": 4,
       "desc": "Here is the description"
     },
@@ -50,7 +50,7 @@
       "image": "",
       "name": "UCB",
       "category": "shirt",
-      "price": 400,
+      "price": 234,
       "availableQuantity": 4,
       "desc": "Here is the description"
     },
@@ -59,7 +59,7 @@
       "image": "",
       "name": "arrow",
       "category": "shirt",
-      "price": 400,
+      "price": 101,
       "availableQuantity": 4,
       "desc": "Here is the description"
     },
@@ -68,7 +68,7 @@
       "image": "",
       "name": "UCB",
       "category": "shirt",
-      "price": 400,
+      "price": 1008,
       "availableQuantity": 4,
       "desc": "Here is the description"
     }

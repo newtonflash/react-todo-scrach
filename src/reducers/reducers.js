@@ -1,6 +1,7 @@
 let initialState = {
     products: [],
-    searchString: ""
+    searchString: "",
+    sortBy : "A-Z"
 };
 
 const ProductListReducer = (state = initialState , action) => {
@@ -11,6 +12,9 @@ const ProductListReducer = (state = initialState , action) => {
 
             return Object.assign({}, state, action.data);
 
+        case "SORT":
+
+            return Object.assign({}, state, {sortBy : action.data});
         //case "LOAD_PRODUCTS_INFORMATION":
           //  return {}
 

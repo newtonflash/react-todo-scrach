@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Search from '../components/search';
 import Product from '../components/product';
+import CustomDropdown from "../components/customDropdown"
 import {connect} from 'react-redux';
 
 import PLPAction from '../actions/actions';
@@ -13,6 +14,7 @@ class App extends Component {
     constructor(props){
         super(props);
         this.searchEventHandler = this.searchEventHandler.bind(this);
+        this.sortEventHandler = this.sortEventHandler.bind(this);
     }
 
     componentDidMount(){
@@ -23,6 +25,10 @@ class App extends Component {
 
     searchEventHandler(searchKey){
         this.props.dispatch(PLPAction.search(searchKey));
+    }
+
+    sortEventHandler(sortBy){
+        this.props.dispatch(PLPAction.sort(sortBy));
     }
 
   render() {
@@ -41,9 +47,31 @@ class App extends Component {
                   });
           }
       };*/
+      function compare(a,b) {
+        if (a.name < b.name)
+          return -1;
+        if (a.name > b.name)
+          return 1;
+        return 0;
+      }
 
       const getProductList = () => {
-          return this.props.products.map((item, index) => {
+        let productList = this.props.products;
+
+            if(this.props.sortBy === "A-Z"){
+                productList.sort(function(a,b) {return (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0);})
+            }
+           else if(this.props.sortBy === "Z-A"){
+                productList.sort(function(a,b) {return (a.name.toLowerCase() > b.name.toLowerCase()) ? -1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? 1 : 0);})
+            }
+            else if(this.props.sortBy === "price:low to high"){
+                productList.sort(function(a,b) {return (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0);})
+            }
+            else{
+                productList.sort(function(a,b) {return (a.price > b.price) ? -1 : ((b.price > a.price) ? 1 : 0);})   
+            }
+
+          return productList.map((item, index) => {
             return (<Product key={index} data={item} ></Product>);
           });
       };
@@ -53,6 +81,8 @@ class App extends Component {
       <div className="App">
         <h1>Product List</h1>
           <Search searchEventHandler={this.searchEventHandler}></Search>
+          <CustomDropdown labelText="SORT BY NAME" sortEventHandler={this.sortEventHandler} options={["A-Z","Z-A"]}/>
+          <CustomDropdown labelText="SORT BY PRICE" sortEventHandler={this.sortEventHandler} options={["price:low to high","price : high to low"]}/>
           <ul>
               {getProductList()}
           </ul>
@@ -65,7 +95,8 @@ class App extends Component {
 const convertStateToProps = (state) => {
     return {
         products : searchSelector(state),
-        searchString : state.searchString
+        searchString : state.searchString,
+        sortBy : state.sortBy
     }
 };
 
