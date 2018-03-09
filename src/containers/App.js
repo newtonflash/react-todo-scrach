@@ -56,22 +56,8 @@ class App extends Component {
       }
 
       const getProductList = () => {
-        let productList = this.props.products;
-
-            if(this.props.sortBy === "A-Z"){
-                productList.sort(function(a,b) {return (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? -1 : 0);})
-            }
-           else if(this.props.sortBy === "Z-A"){
-                productList.sort(function(a,b) {return (a.name.toLowerCase() > b.name.toLowerCase()) ? -1 : ((b.name.toLowerCase() > a.name.toLowerCase()) ? 1 : 0);})
-            }
-            else if(this.props.sortBy === "price:low to high"){
-                productList.sort(function(a,b) {return (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0);})
-            }
-            else{
-                productList.sort(function(a,b) {return (a.price > b.price) ? -1 : ((b.price > a.price) ? 1 : 0);})   
-            }
-
-          return productList.map((item, index) => {
+        
+        return this.props.products.map((item, index) => {
             return (<Product key={index} data={item} ></Product>);
           });
       };
