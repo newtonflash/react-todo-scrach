@@ -16,8 +16,8 @@ class PLP extends Component {
     }
 
     componentDidMount(){
-        this.props.dispatch(PLPAction.loadProductsData());
-
+        //this.props.dispatch(PLPAction.loadProductsData());
+        this.props.dispatch({type: 'GET_PLP_DATA'});
     }
 
 
